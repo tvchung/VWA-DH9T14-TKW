@@ -1,0 +1,62 @@
+/* tương tác thông qua tên thẻ html */
+body{
+    background-color: chartreuse;
+}
+h1{
+    font-size: 2.5rem;
+    color: blue;
+    border-bottom: 5px solid red;
+}
+
+/* CSS tương tác với thuộc tính id của thẻ HTML (duy nhất) */
+#zone1{
+    background-color: aqua;
+    padding: 1rem;
+}
+#zone2{
+    background-color: blueviolet;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+/* CSS tương tác với (thuộc tính) tên class của thẻ HTML */
+.tieu-de{
+    color: brown;
+    font-size: 2.25rem;
+}
+.noi-dung{
+    font-size: 1rem;
+    color: #999;
+    padding: 1rem;
+    font-style: italic;
+    text-align: justify;
+}
+
+/* CSS tương tác với giá trị của  thuộc tính */
+#zone4{
+    width: 300px;
+    margin: 1rem auto;
+    border: 2px solid red;
+    padding: 1rem;
+    border-radius: .5rem;
+}
+input{
+    width: calc(100% - 2rem);
+    padding: .5rem 1rem;
+    margin: .5rem auto;
+    border-radius: 999px;
+    border-color: red;
+}
+
+input[type="submit"]{
+    background-color: yellow;
+    width: 100%;
+    border: none;
+}
+input[type="submit"]:hover{
+    background-color: forestgreen;
+    width: 100%;
+    border: none;
+    color: yellow;
+    cursor: pointer;
+}

@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Roboto-ExtraBold";
+    src: url('../fonts/Roboto-ExtraBold.ttf');
+}
+@font-face {
+    font-family: "Roboto-SemiBold";
+    src: url('../fonts/Roboto-SemiBold.ttf');
+}
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url('../fonts/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url('../fonts/Roboto-Medium.ttf');
+}
+
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url('../fonts/Roboto-Regular.ttf');
+}

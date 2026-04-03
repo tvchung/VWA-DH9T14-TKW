@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biến trong ngôn ngữ JavaScript</title>
+</head>
+<body>
+    <h1>Biến trong ngôn ngữ JavaScript</h1>
+    <script>
+        // Biến là một vùng nhớ được đặt tên để lưu trữ dữ liệu trong chương trình. Biến có thể chứa các loại dữ liệu khác nhau như số, chuỗi, boolean, đối tượng, v.v.
+        // Cách khai báo biến trong JavaScript:
+        // 1. Sử dụng từ khóa var (cũ, không khuyến khích sử dụng)
+        var name = 'Chung Trịnh';
+        // 2. Sử dụng từ khóa let (khuyến khích sử dụng)
+        let age = 30;
+        // 3. Sử dụng từ khóa const (dùng để khai báo hằng số, giá trị không thể thay đổi)
+        const PI = 3.14;
+        // Ví dụ sử dụng biến
+        console.log('Tên:', name);
+        console.log('Tuổi:', age);
+        console.log('Giá trị của PI:', PI);
+
+        name = 'Nguyễn Văn A'; // Có thể thay đổi giá trị của biến name
+        age = 25; // Có thể thay đổi giá trị của biến age
+        // PI = 3.14159; // Lỗi: không thể thay đổi giá trị của hằng số PI
+        console.log('Tên mới:', name);
+        console.log('Tuổi mới:', age);
+        
+    </script>
+</body>
+</html>

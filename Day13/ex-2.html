@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sử dụng DOM trong JavaScript - Kiểm tra / tính toán trên form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .err {
+            color: red;
+            font-size: 12px;
+        }
+        form {
+            width: 450px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        input[type="text"], input[type="password"], textarea {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin: 5px 0 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        form div {
+            margin-bottom: 15px;
+        }
+        form div.group-control > label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sử dụng DOM trong JavaScript - Kiểm tra / tính toán trên form</h1>
+    <form id="myForm" action="#" method="post">
+        <div>
+            <h2>THÔNG TIN ĐĂNG KÝ THÀNH VIÊN</h2>
+        </div>
+        <div class="group-control">
+            <label for="username">Tên đăng nhập:</label>
+            <div>
+                <input type="text" name="username" id="username" placeholder="Nhập tên đăng nhập">
+                <span id="error-username" class="err"></span>
+            </div>
+        </div>
+        <div class="group-control">
+            <label for="email">Email:</label>
+            <div>
+                <input type="text" name="email" id="email" placeholder="Nhập email">
+                <span id="error-email" class="err"></span>
+            </div>
+        </div>
+        <div  class="group-control">
+            <label for="password">Mật khẩu:</label>
+            <div>
+                <input type="password" name="password" id="password" placeholder="Nhập mật khẩu">
+                <span id="error-password" class="err"></span>
+            </div>  
+        </div>
+        <div class="group-control">
+            <label for="confirm-password">Xác nhận mật khẩu:</label>
+            <div>
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Xác nhận mật khẩu">
+                <span id="error-confirm-password" class="err"></span>
+            </div> 
+        </div>
+        <div class="group-control">
+            <label for="so-thich">Sở thích:</label>
+            <div>
+                <input type="checkbox" name="so-thich" id="chkBongDa"><label for="chkBongDa">Bóng đá</label>
+                <input type="checkbox" name="so-thich" id="chkCaSi"><label for="chkCaSi">Ca sĩ</label>
+                <input type="checkbox" name="so-thich" id="chkDuLich"><label for="chkDuLich">Du lịch</label>
+                <input type="checkbox" name="so-thich" id="chkAmNhac"><label for="chkAmNhac">Âm nhạc</label>
+            </div>
+        </div>
+        <div class="group-control">
+            <label for="rdGioiTinh">Giới tính:</label>
+            <div>
+                <input type="radio" name="rdGioiTinh" id="rdNam" value="Nam">
+                <label for="rdNam">Nam</label>
+                <input type="radio" name="rdGioiTinh" id="rdNu" value="Nữ">
+                <label for="rdNu">Nữ</label>
+                <input type="radio" name="rdGioiTinh" id="rdKhac" value="Khác">
+                <label for="rdKhac">Khác</label>
+            </div>
+        </div>
+        <div class="group-control">
+            <label for="diaChi">Địa chỉ:</label>
+            <div>
+                <textarea name="diaChi" id="diaChi" placeholder="Nhập địa chỉ"></textarea>
+            </div>
+        </div>
+        <div>
+            <button type="submit" onclick="return check_form(event);">Đăng ký</button>
+        </div>
+    </form>
+
+    <script>
+        const check_form = (e)=>{
+            e.preventDefault(); // Ngăn chặn form submit mặc định
+
+            // kiểm tra tên đăng nhập; tên đăng nhập phải có ít nhất 5 ký tự
+            const username = document.getElementById("username").value;
+            if (username.length < 5) {
+                document.getElementById("error-username").textContent = "Tên đăng nhập phải có ít nhất 5 ký tự.";
+                return false;
+            } else {
+                document.getElementById("error-username").innerHTML = "<b style='color: green;'> OK </b>";
+            }
+
+            // Kiểm tra email; email phải có định dạng hợp lệ
+            const email = document.getElementById("email").value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById("error-email").textContent = "Email không hợp lệ.";
+                return false;
+            } else {
+                document.getElementById("error-email").innerHTML = "<b style='color: green;'> OK </b>";
+            }   
+
+            // Kiểm tra mật khẩu; mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số
+            const password = document.getElementById("password").value;
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (!passwordPattern.test(password)) {
+                document.getElementById("error-password").textContent = "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số.";
+                return false;
+            } else {
+                document.getElementById("error-password").innerHTML = "<b style='color: green;'> OK </b>";
+            }
+
+            // Kiểm tra xác nhận mật khẩu; xác nhận mật khẩu phải khớp với mật khẩu
+            const confirmPassword = document.getElementById("confirm-password").value;
+            if (confirmPassword !== password) {
+                document.getElementById("error-confirm-password").textContent = "Xác nhận mật khẩu không khớp.";
+                return false;
+            } else {
+                document.getElementById("error-confirm-password").innerHTML = "<b style='color: green;'> OK </b>";
+            }
+
+            // kiểm tra sở thích; người dùng phải chọn ít nhất một sở thích
+
+            const hobbies = document.querySelectorAll('input[name="so-thich"]:checked');
+            if (hobbies.length === 0) {
+                alert("Vui lòng chọn ít nhất một sở thích.");
+                return false;
+            }   
+            // kiêm tra giới tính; người dùng phải chọn một giới tính
+            const gender = document.querySelector('input[name="rdGioiTinh"]:checked');
+            if (!gender) {
+                alert("Vui lòng chọn một giới tính.");
+                return false;
+            }
+            
+
+            alert("Form đã được kiểm tra và sẽ không gửi đi.");
+            return false;
+        }
+    </script>
+</body>
+</html>
